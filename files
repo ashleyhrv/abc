@@ -1,0 +1,67 @@
+'''
+Ashley Reyes Vergara
+start date: Apr 17, 2024
+start date: Apr 17 2024
+description: This program will allow a user to create,write,read and append a file
+'''
+import os.path
+from os import path
+
+def create():
+    filename = str(input("Enter the file name "));
+    filename = filename + ".txt";
+    
+    ifexists = bool(path.exists(filename));
+    
+    if(ifexists == False):
+        pythfile = open(filename,"w");
+        print("File created succesfully!");
+        menu()
+    else:
+        menu()
+    pythfile.close(); 
+   
+def write():
+    pythfile = open(filename,"r");
+    words = str(input("What would you like to write"))
+    pythfile = open(filename,"w");
+    pythfile.write(words); 
+    pythfile.close()    
+
+def checkfile():
+    global filename, ifexists
+    filename = str(input("Enter the file name to confirm if it exists "));
+    filename = filename + ".txt";
+    
+    ifexists = bool(path.exists(filename));
+    
+    if(ifexists == False):
+        pythfile = open(filename,"w");
+        print("File created successfully!");
+        
+    menu();   
+    
+def menu():
+    menumsg = "\n1-Create File \n2-write file\n3-Read file\n4-Append file"
+    print(menumsg);
+    whichoption = input("Select an operation: ")
+    switcher = {
+        1: create,
+        2: write
+        }
+    whichselect = switcher.get(int(whichoption),"Invalid")
+    print(whichselect)
+    if(whichselect=="Invalid"):
+        print("Invalid please enter a valid option")
+        main()
+    else:
+        return whichselect
+    
+
+    
+def main():
+    checkfile();
+   
+if __name__ == "__main__":
+    main();
+    
